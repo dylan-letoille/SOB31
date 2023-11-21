@@ -18,7 +18,7 @@
 # Average: 33
 # Grade: F
 # Student iis failing.
-
+#test statement
 exam_one = int(input("Input exam grade one: "))
 
 exam_two = input("Input exam grade two: "))
