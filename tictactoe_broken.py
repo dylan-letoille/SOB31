@@ -1,4 +1,4 @@
-#tictactoe game.
+# tictactoe game.
 
 # Find the 4 errors in the code and fix them,
 # so the game works as expected.
@@ -13,6 +13,7 @@ def display_winner(player):
     else:
         print("Player " + str(player) + " wins!")
 
+
 def check_row_winner(row):
     """
     Return the player number that wins for that row.
@@ -22,11 +23,14 @@ def check_row_winner(row):
         return row[0]
     return 0
 
+
 def get_col(game, col_number):
     return [game[x][col_number] for x in range(3)]
 
+
 def get_row(game, row_number):
     return game[row_number]
+
 
 def check_winner(game):
     game_slices = []
@@ -44,11 +48,11 @@ def check_winner(game):
         winner = check_row_winner(game_slice)
         if winner != 0:
             return winner
-
     return winner
 
 def start_game():
     return [[0, 0, 0] for x in range(3)]
+
 
 def display_game(game):
     d = {2: "O", 1: "X", 0: "_"}
@@ -67,20 +71,24 @@ def add_piece(game, player, row, column):
     row: 0-index row
     column: 0-index column
     """
-    game[row][column+1] = player
+    game[row][column] = player  # removed +1
     return game
+
 
 def check_space_empty(game, row, column):
     return game[row][column] == 0
 
+
 def convert_input_to_coordinate(user_input):
     return user_input - 1
 
+
 def switch_player(player):
-    if player = 1:
+    if player == 1:  # replaced = with ==
         return 2
     else:
         return 1
+
 
 def moves_exist(game):
     for row_num in range(3):
@@ -88,6 +96,7 @@ def moves_exist(game):
             if game[row_num][col_num] == 0:
                 return True
     return False
+
 
 if __name__ == '__main__':
     game = start_game()
@@ -98,12 +107,12 @@ if __name__ == '__main__':
     while winner == 0 and moves_exist(game):
         print("Currently player: " + str(player))
         available = False
-        while not available
+        while not available:  # added colon
             row = convert_input_to_coordinate(int(input("Which row? (start with 1) ")))
             column = convert_input_to_coordinate(int(input("Which column? (start with 1) ")))
-            available = check_space_empty(game, row)
+            available = check_space_empty(game, row, column)  # added column
         game = add_piece(game, player, row, column)
         display_game(game)
         player = switch_player(player)
-#        winner = check_winner(game)
+        winner = check_winner(game)  # uncommented the line
     display_winner(winner)
